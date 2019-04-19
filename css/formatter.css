@@ -1,0 +1,7 @@
+.bowling-scorecard {
+    table-layout: fixed;
+}
+
+.bowling-details li {
+    display: inline-block;
+}

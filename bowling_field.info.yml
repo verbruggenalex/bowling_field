@@ -1,0 +1,7 @@
+name: 'Bowling field'
+type: module
+description: 'A field to record bowling scores.'
+core: 8.x
+package: 'Field types'
+dependencies:
+  - drupal:field

@@ -1,0 +1,15 @@
+formatter:
+  # version: 1.x
+  css:
+    theme:
+      css/formatter.css: {}
+widget:
+  # version: 1.x
+  css:
+    theme:
+      css/widget.css: {}
+  js:
+    js/widget.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once

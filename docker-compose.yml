@@ -1,0 +1,50 @@
+version: '3'
+services:
+# ==============================================================================
+  web:
+    image: verbral/php-c9:7.2-apache
+    environment:
+      APACHE_DOCUMENT_ROOT: /build
+      GIT_USER_NAME: ${GIT_USER_NAME}
+      GIT_USER_EMAIL: ${GIT_USER_EMAIL}
+      WAKATIME_API_KEY: ${WAKATIME_API_KEY}
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+      - ~/.ssh:/home/docker/.ssh
+    depends_on:
+      - mysql
+    ports:
+      - 81:80
+      - 8181:8181
+# ==============================================================================
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=drupal
+    volumes:
+      - mysql:/var/lib/mysql
+# ==============================================================================
+  selenium:
+    image: selenium/standalone-chrome
+# ==============================================================================
+#  solr:
+#    image: fpfis/solr5
+# ==============================================================================
+#  backstop:
+#    image: backstopjs/backstopjs
+#    volumes:
+#      - ${PWD}/tests/backstop:/src
+#    user: 1000:1000
+# ==============================================================================
+#  blackfire:
+#    image: blackfire/blackfire
+#    environment:
+#        - BLACKFIRE_CLIENT_ID
+#        - BLACKFIRE_CLIENT_TOKEN
+#        - BLACKFIRE_SERVER_ID
+#        - BLACKFIRE_SERVER_TOKEN
+# ==============================================================================
+volumes:
+  mysql:
