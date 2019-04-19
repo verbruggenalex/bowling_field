@@ -1,0 +1,22 @@
+uuid: 8faab8f3-0219-4d2b-a68d-015a38a23b88
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+  enforced:
+    module:
+      - bowling_field_test
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+_core:
+  default_config_hash: qDR774C8NSfrwJgPfuRZ7AnQXZEXbYe2l9cP0TLVI44
+name: Bowling
+type: bowling
+description: 'A test content type for the bowling_field module.'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

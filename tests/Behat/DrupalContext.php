@@ -22,7 +22,7 @@ class DrupalContext extends RawDrupalContext {
    * @BeforeSuite
    */
   public static function installTestModule(BeforeSuiteScope $scope): void {
-    \Drupal::service('module_installer')->install(['views_field_formatter_test']);
+    \Drupal::service('module_installer')->install(['bowling_field_test']);
   }
 
   /**
@@ -34,7 +34,7 @@ class DrupalContext extends RawDrupalContext {
    * @AfterSuite
    */
   public static function uninstallTestModule(AfterSuiteScope $scope): void {
-    \Drupal::service('module_installer')->uninstall(['views_field_formatter_test']);
+    \Drupal::service('module_installer')->uninstall(['bowling_field_test']);
   }
 
 }

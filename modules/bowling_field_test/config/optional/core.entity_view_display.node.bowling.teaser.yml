@@ -1,0 +1,24 @@
+uuid: efaf82cd-2c2f-4403-96a5-32b1178dcdc9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.bowling.field_bowling
+    - node.type.bowling
+  module:
+    - user
+_core:
+  default_config_hash: adurehfCNxH2mGNKAWFGVwL682DsztavxrecgDis0ys
+id: node.bowling.teaser
+targetEntityType: node
+bundle: bowling
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_bowling: true

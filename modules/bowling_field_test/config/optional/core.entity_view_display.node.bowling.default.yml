@@ -1,0 +1,29 @@
+uuid: b7ac4bfc-e025-42cf-bc14-d8ecfa1acff3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.bowling.field_bowling
+    - node.type.bowling
+  module:
+    - user
+_core:
+  default_config_hash: YZNH9u73BlCkXHCNajAIiPO9vtR9W_GLplEoO8rPock
+id: node.bowling.default
+targetEntityType: node
+bundle: bowling
+mode: default
+content:
+  field_bowling:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: null
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

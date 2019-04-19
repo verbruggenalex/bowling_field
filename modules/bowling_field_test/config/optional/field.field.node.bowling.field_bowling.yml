@@ -1,0 +1,23 @@
+uuid: c8343254-10dc-4ab5-8098-b0dfc6fecc9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bowling
+    - node.type.bowling
+  module:
+    - bowling_field
+_core:
+  default_config_hash: Dslx_8dVP3WmPl4ntdb5D_jDCkySVa33tHNYdJs2UxQ
+id: node.bowling.field_bowling
+field_name: field_bowling
+entity_type: node
+bundle: bowling
+label: Bowling
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: bowling_field

@@ -1,0 +1,19 @@
+uuid: c24b81d0-7cd6-4128-8f52-2ad0d4ee8b54
+langcode: en
+status: true
+dependencies:
+  module:
+    - bowling_field
+    - node
+id: node.field_bowling
+field_name: field_bowling
+entity_type: node
+type: bowling_field
+settings: {  }
+module: bowling_field
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
