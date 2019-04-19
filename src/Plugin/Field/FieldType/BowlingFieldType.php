@@ -1,13 +1,12 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\bowling_field\Plugin\Field\FieldType;
 
-use Drupal\Component\Utility\Random;
-use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\TypedData\DataDefinition;
 use Drupal\Core\TypedData\MapDataDefinition;
@@ -25,59 +24,10 @@ class BowlingFieldType extends FieldItemBase implements FieldItemInterface {
   /**
    * {@inheritdoc}
    */
-  public static function schema(FieldStorageDefinitionInterface $field_definition) {
-    return [
-      'columns' => [
-        'scorecard' => [
-          'type' => 'blob',
-          'size' => 'normal',
-          'not null' => TRUE,
-          'serialize' => TRUE,
-        ],
-        'scoreboard' => [
-          'type' => 'blob',
-          'size' => 'normal',
-          'not null' => TRUE,
-          'serialize' => TRUE,
-        ],
-        'strikes' => [
-          'type' => 'int',
-          'size' => 'tiny',
-          'default' => 0,
-          'not null' => TRUE
-        ],
-        'spares' => [
-          'type' => 'int',
-          'size' => 'tiny',
-          'default' => 0,
-          'not null' => TRUE
-        ],
-        'misses' => [
-          'type' => 'int',
-          'size' => 'tiny',
-          'default' => 0,
-          'not null' => TRUE
-        ],
-        'open_frames' => [
-          'type' => 'int',
-          'size' => 'tiny',
-          'default' => 0,
-          'not null' => TRUE
-        ],
-        'closed_frames' => [
-          'type' => 'int',
-          'size' => 'tiny',
-          'default' => 0,
-          'not null' => TRUE
-        ],
-        'total_score' => [
-          'type' => 'int',
-          'size' => 'small',
-          'default' => 0,
-          'not null' => TRUE
-        ],
-      ],
-    ];
+  public function isEmpty() {
+    $scorecard = $this->get('scorecard')->getValue();
+
+    return empty(array_filter($scorecard));
   }
 
   /**
@@ -114,8 +64,59 @@ class BowlingFieldType extends FieldItemBase implements FieldItemInterface {
   /**
    * {@inheritdoc}
    */
-  public function isEmpty() {
-    $scorecard = $this->get('scorecard')->getValue();
-    return empty(array_filter($scorecard));
+  public static function schema(FieldStorageDefinitionInterface $field_definition) {
+    return [
+      'columns' => [
+        'scorecard' => [
+          'type' => 'blob',
+          'size' => 'normal',
+          'not null' => TRUE,
+          'serialize' => TRUE,
+        ],
+        'scoreboard' => [
+          'type' => 'blob',
+          'size' => 'normal',
+          'not null' => TRUE,
+          'serialize' => TRUE,
+        ],
+        'strikes' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'default' => 0,
+          'not null' => TRUE,
+        ],
+        'spares' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'default' => 0,
+          'not null' => TRUE,
+        ],
+        'misses' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'default' => 0,
+          'not null' => TRUE,
+        ],
+        'open_frames' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'default' => 0,
+          'not null' => TRUE,
+        ],
+        'closed_frames' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'default' => 0,
+          'not null' => TRUE,
+        ],
+        'total_score' => [
+          'type' => 'int',
+          'size' => 'small',
+          'default' => 0,
+          'not null' => TRUE,
+        ],
+      ],
+    ];
   }
+
 }

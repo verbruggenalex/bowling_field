@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\bowling_field\Plugin\Field\FieldFormatter;
 
 use Drupal\Component\Utility\Html;
@@ -45,7 +47,6 @@ class BowlingFieldFormatter extends FormatterBase {
   public function settingsSummary() {
     $summary = [];
     // Implement settings summary.
-
     return $summary;
   }
 
@@ -60,33 +61,34 @@ class BowlingFieldFormatter extends FormatterBase {
       $scorecard = $item->scorecard;
       $scoreboard = $item->scoreboard;
       $rows[] = array_values($scorecard);
-      $number = $delta+1;
+      $number = $delta + 1;
       $items = [
-        t('Game') . ': #' . $number,
-        t('Strikes') . ': ' . $item->strikes,
-        t('Spares') . ': ' . $item->spares,
-        t('Score') . ': ' . $item->total_score,
+        t('Game: %number', ['%number' => '#' . $number]),
+        t('Strikes: %number', ['%number' => $item->strikes]),
+        t('Spares: %number', ['%number' => $item->spares]),
+        t('Score: %number', ['%number' => $item->total_score]),
       ];
-      
+
       $elements[$delta]['details'] = [
         '#theme' => 'item_list',
         '#items' => $items,
-        '#attributes' => array(
+        '#attributes' => [
           'class' => 'bowling-details',
-        ),
+        ],
       ];
 
-      $elements[$delta]['scorecard'] = array(
+      $elements[$delta]['scorecard'] = [
         '#type' => 'table',
         '#rows' => $rows,
-        '#attributes' => array(
+        '#attributes' => [
           'class' => 'bowling-scorecard',
-        ),
-      );
-      
+        ],
+      ];
+
       // Split into seperate library for formatters.
       $elements['#attached']['library'][] = 'bowling_field/formatter';
     }
+
     return $elements;
   }
 
