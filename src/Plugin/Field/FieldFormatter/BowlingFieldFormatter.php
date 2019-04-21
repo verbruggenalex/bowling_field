@@ -66,6 +66,7 @@ class BowlingFieldFormatter extends FormatterBase {
         t('Game: %number', ['%number' => '#' . $number]),
         t('Strikes: %number', ['%number' => $item->strikes]),
         t('Spares: %number', ['%number' => $item->spares]),
+        t('Misses: %number', ['%number' => $item->misses]),
         t('Score: %number', ['%number' => $item->total_score]),
       ];
 

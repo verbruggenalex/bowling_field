@@ -33,44 +33,55 @@ class BowlingFieldScorecardWidget extends WidgetBase {
 
     $options = [
       '' => ' ',
-      '-' => '-',
-      '1' => '1',
-      '2' => '2',
-      '3' => '3',
-      '4' => '4',
-      '5' => '5',
-      '6' => '6',
-      '7' => '7',
-      '8' => '8',
-      '9' => '9',
+      'X' => 'X',
       '/' => '/',
+      '9' => '9',
+      '8' => '8',
+      '7' => '7',
+      '6' => '6',
+      '5' => '5',
+      '4' => '4',
+      '3' => '3',
+      '2' => '2',
+      '1' => '1',
+      '0' => '0',
+      'S8' => 'S8',
+      'S7' => 'S7',
+      'S6' => 'S6',
+      'S5' => 'S5',
+      'S4' => 'S4',
+      'F0' => 'F0',
     ];
-    $settings = [
-      'id' => '#edit-field-bowling-wrapper' . str_replace('_', '-', $field['field_name']),
-      'options' => $options,
-    ];
+    // $settings = [
+    //   'id' => '#edit-field-bowling-wrapper' . str_replace('_', '-', $field['field_name']),
+    //   'options' => $options,
+    // ];
 
-    $element['#attached']['drupalSettings']['bowlingField']['bowlingWidget'] = $settings;
+    // $element['#attached']['drupalSettings']['bowlingField']['bowlingWidget'] = $settings;
 
     for ($i = 1; $i <= 21; $i++) {
       if ($i & 1) {
-        $trowing_options = $options + ['X' => 'X'];
+        $trowing_options = $options;
         unset($trowing_options['/']);
         $class = ['odd', 'trow'];
       }
-      else {
+      elseif ($i != 20) {
         $trowing_options = $options;
+        unset($trowing_options['X']);
+        unset($trowing_options['S8']);
+        unset($trowing_options['S7']);
+        unset($trowing_options['S6']);
+        unset($trowing_options['S5']);
+        unset($trowing_options['S4']);
         $class = ['even', 'trow'];
       }
-      if ($i === 20) {
-        $trowing_options = $options + ['X' => 'X'];
-        $class = ['twenty', 'trow'];
+      else {
+        $trowing_options['/'] = '/';
       }
-
-      $element['scorecard']['trow-' . $i] = [
+      $element['scorecard']['throw-' . $i] = [
         '#type' => 'select',
         '#options' => $trowing_options,
-        '#default_value' => $scorecard['trow-' . $i],
+        '#default_value' => $scorecard['throw-' . $i],
         '#attributes' => [
           'class' => $class,
         ],
@@ -87,20 +98,30 @@ class BowlingFieldScorecardWidget extends WidgetBase {
     foreach ($values as $delta => $item) {
       $pins = [];
       if (!empty(array_filter($item['scorecard']))) {
-        foreach ($item['scorecard'] as $key => $value) {
+        $splits = 0;
+        $splits_closed = 0;
+        $scorecard = array_values($item['scorecard']);
+        foreach ($scorecard as $key => $value) {
           if ($value !== '') {
             if ($value === 'X') {
               $pins[] = 10;
             }
             elseif ($value === '/') {
               $pins[] = 10 - end($pins);
+              $prev = $key - 1;
+              if ($scorecard[$prev][0] === 'S') {
+                $splits_closed++;
+              }
             }
             else {
-              if ($value === '-') {
+              if ($value === '0') {
                 $pins[] = 0;
               }
               else {
-                $pins[] = (int) $value;
+                $pins[] = (int) trim($value, 'SF');
+                if ($value[0] === 'S') {
+                  $splits++;
+                }
               }
             }
           }
@@ -127,7 +148,10 @@ class BowlingFieldScorecardWidget extends WidgetBase {
         $counts = array_count_values($item['scorecard']);
         $values[$delta]['strikes'] = $counts['X'] ? $counts['X'] : '0';
         $values[$delta]['spares'] = $counts['/'] ? $counts['/'] : '0';
-        $values[$delta]['misses'] = $counts['-'] ? $counts['-'] : '0';
+        $values[$delta]['misses'] = $counts['0'] ? $counts['0'] : '0';
+        $values[$delta]['faults'] = $counts['F0'] ? $counts['F0'] : '0';
+        $values[$delta]['splits'] = $splits;
+        $values[$delta]['splits_closed'] = $splits_closed;
         $values[$delta]['open_frames'] = $open_frames;
         $values[$delta]['closed_frames'] = $closed_frames;
         $values[$delta]['total_score'] = $total_score;

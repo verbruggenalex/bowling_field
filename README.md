@@ -1,19 +1,12 @@
-# Installation
+# Bowling field
 
-```bash
-docker-compose up -d
-```
+The bowling field module provides a new field type, widget and formatter to
+record bowling scores. By entering your scorecard you can keep track of your
+bowling statistics. Currently the following statistics are being kept for each
+game: strikes, spares, misses, open frames, closed frames and total score.
 
-```bash
-docker-compose exec web composer install
-```
+## Development
 
-```bash
-docker-compose exec web ./vendor/bin/run dsi
-```
-
-Using the default configuration, the development site web root should be in the
-`build` directory.
-
-- Site is available at [http://127.0.0.1:81/](http://127.0.0.1:81/).
-- C9 is available at [http://127.0.0.1:8181/](http://127.0.0.1:8181/).
+For development in this module run `docker-compose up -d` and you will have the
+Cloud9 editor available at port `8181`. In the C9 shell run `composer install`
+and `./vendor/bin/run dsi`. This will result in a working website at port `81`.

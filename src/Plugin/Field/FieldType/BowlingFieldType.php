@@ -49,6 +49,15 @@ class BowlingFieldType extends FieldItemBase implements FieldItemInterface {
     $properties['misses'] = DataDefinition::create('integer')
       ->setLabel(new TranslatableMarkup('Misses'));
 
+    $properties['faults'] = DataDefinition::create('integer')
+      ->setLabel(new TranslatableMarkup('Faults'));
+
+    $properties['splits'] = DataDefinition::create('integer')
+      ->setLabel(new TranslatableMarkup('Splits'));
+
+    $properties['splits_closed'] = DataDefinition::create('integer')
+      ->setLabel(new TranslatableMarkup('Splits closed'));
+
     $properties['open_frames'] = DataDefinition::create('integer')
       ->setLabel(new TranslatableMarkup('Open frames'));
 
@@ -92,6 +101,24 @@ class BowlingFieldType extends FieldItemBase implements FieldItemInterface {
           'not null' => TRUE,
         ],
         'misses' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'default' => 0,
+          'not null' => TRUE,
+        ],
+        'faults' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'default' => 0,
+          'not null' => TRUE,
+        ],
+        'splits' => [
+          'type' => 'int',
+          'size' => 'tiny',
+          'default' => 0,
+          'not null' => TRUE,
+        ],
+        'splits_closed' => [
           'type' => 'int',
           'size' => 'tiny',
           'default' => 0,
