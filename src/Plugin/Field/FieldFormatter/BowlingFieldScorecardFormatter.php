@@ -11,17 +11,17 @@ use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Plugin implementation of the 'bowling_field' formatter.
+ * Plugin implementation of the 'bowling_field_scorecard' formatter.
  *
  * @FieldFormatter(
- *   id = "bowling_field",
- *   label = @Translation("Bowling field formatter"),
+ *   id = "bowling_field_scorecard",
+ *   label = @Translation("Scorecard"),
  *   field_types = {
  *     "bowling_field"
  *   }
  * )
  */
-class BowlingFieldFormatter extends FormatterBase {
+class BowlingFieldScorecardFormatter extends FormatterBase {
 
   /**
    * {@inheritdoc}

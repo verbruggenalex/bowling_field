@@ -16,6 +16,8 @@ use Drupal\Core\TypedData\MapDataDefinition;
  *
  * @FieldType(
  *   id = "bowling_field",
+ *   default_formatter = "bowling_field_scorecard",
+ *   default_widget = "bowling_field_scorecard",
  *   label = @Translation("Bowling"),
  *   description = @Translation("Field type to store bowling scores.") * )
  */

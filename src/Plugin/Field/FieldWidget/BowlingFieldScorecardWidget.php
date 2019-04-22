@@ -52,12 +52,12 @@ class BowlingFieldScorecardWidget extends WidgetBase {
       'S4' => 'S4',
       'F0' => 'F0',
     ];
-    // $settings = [
-    //   'id' => '#edit-field-bowling-wrapper' . str_replace('_', '-', $field['field_name']),
-    //   'options' => $options,
-    // ];
+    $settings = [
+      'id' => '#edit-' . str_replace('_', '-', $this->fieldDefinition->getName()) . '-' . $delta . '-scorecard',
+      'options' => $options,
+    ];
 
-    // $element['#attached']['drupalSettings']['bowlingField']['bowlingWidget'] = $settings;
+    $element['#attached']['drupalSettings']['bowlingField']['bowlingWidget'] = $settings;
 
     for ($i = 1; $i <= 21; $i++) {
       if ($i & 1) {
@@ -65,7 +65,7 @@ class BowlingFieldScorecardWidget extends WidgetBase {
         unset($trowing_options['/']);
         $class = ['odd', 'trow'];
       }
-      elseif ($i != 20) {
+      elseif ($i !== 20) {
         $trowing_options = $options;
         unset($trowing_options['X']);
         unset($trowing_options['S8']);
@@ -146,10 +146,10 @@ class BowlingFieldScorecardWidget extends WidgetBase {
 
         $frame_average = $total_score / 10;
         $counts = array_count_values($item['scorecard']);
-        $values[$delta]['strikes'] = $counts['X'] ? $counts['X'] : '0';
-        $values[$delta]['spares'] = $counts['/'] ? $counts['/'] : '0';
-        $values[$delta]['misses'] = $counts['0'] ? $counts['0'] : '0';
-        $values[$delta]['faults'] = $counts['F0'] ? $counts['F0'] : '0';
+        $values[$delta]['strikes'] = isset($counts['X']) ? $counts['X'] : '0';
+        $values[$delta]['spares'] = isset($counts['/']) ? $counts['/'] : '0';
+        $values[$delta]['misses'] = isset($counts['0']) ? $counts['0'] : '0';
+        $values[$delta]['faults'] = isset($counts['F0']) ? $counts['F0'] : '0';
         $values[$delta]['splits'] = $splits;
         $values[$delta]['splits_closed'] = $splits_closed;
         $values[$delta]['open_frames'] = $open_frames;

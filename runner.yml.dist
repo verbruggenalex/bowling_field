@@ -2,6 +2,7 @@ drupal:
   core: 8
   base_url: "http://web"
   site:
+    name: "Bowling field"
     profile: standard
   database:
     scheme: "mysql"
