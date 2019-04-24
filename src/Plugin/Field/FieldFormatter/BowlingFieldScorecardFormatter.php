@@ -100,8 +100,8 @@ class BowlingFieldScorecardFormatter extends FormatterBase {
         'faults' => t('Faults: %number', ['%number' => $item->faults]),
         'splits' => t('Splits: %number', ['%number' => $item->splits]),
         'splits_closed' => t('Splits closed: %number', ['%number' => $item->splits_closed]),
-        'open_frames' => t('Open frames: %number', ['%number' => $item->splits]),
-        'closed_frames' => t('Closed frames: %number', ['%number' => $item->splits_closed]),
+        'open_frames' => t('Open frames: %number', ['%number' => $item->open_frames]),
+        'closed_frames' => t('Closed frames: %number', ['%number' => $item->closed_frames]),
         'total_score' => t('Score: %number', ['%number' => $item->total_score]),
       ];
       $display_statistics = array_intersect_key($items, array_flip(array_filter($this->getSetting('display_statistics'))));
