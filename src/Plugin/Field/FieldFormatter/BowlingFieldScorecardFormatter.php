@@ -28,7 +28,7 @@ class BowlingFieldScorecardFormatter extends FormatterBase {
    */
   public static function defaultSettings() {
     return [
-      // Implement default settings.
+      'display_statistics' => 'total_score',
     ] + parent::defaultSettings();
   }
 
@@ -36,9 +36,26 @@ class BowlingFieldScorecardFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    return [
-      // Implement settings form.
-    ] + parent::settingsForm($form, $form_state);
+    $element['display_statistics'] = [
+      '#type' => 'checkboxes',
+      '#default_value' => $this->getSetting('display_statistics'),
+      '#options' => [
+        'game_number' => $this->t('Game number'),
+        'strikes' => $this->t('Strikes'),
+        'spares' => $this->t('Spares'),
+        'misses' => $this->t('Misses'),
+        'faults' => $this->t('Faults'),
+        'splits' => $this->t('Splits'),
+        'splits_closed' => $this->t('Splits closed'),
+        'open_frames' => $this->t('Open frames'),
+        'closed_frames' => $this->t('Closed frames'),
+        'total_score' => $this->t('Total score'),
+      ],
+      '#title' => $this->t('What statistics would you like to display?'),
+    ];
+
+    return $element + parent::settingsForm($form, $form_state);
+    ;
   }
 
   /**
@@ -46,7 +63,8 @@ class BowlingFieldScorecardFormatter extends FormatterBase {
    */
   public function settingsSummary() {
     $summary = [];
-    // Implement settings summary.
+    $display_statistics = array_filter(array_values($this->getSetting('display_statistics')));
+    $summary[] = $this->t('Displays statistics: %statistics', ['%statistics' => implode(',', $display_statistics)]);
     return $summary;
   }
 
@@ -63,16 +81,22 @@ class BowlingFieldScorecardFormatter extends FormatterBase {
       $rows[] = array_values($scorecard);
       $number = $delta + 1;
       $items = [
-        t('Game: %number', ['%number' => '#' . $number]),
-        t('Strikes: %number', ['%number' => $item->strikes]),
-        t('Spares: %number', ['%number' => $item->spares]),
-        t('Misses: %number', ['%number' => $item->misses]),
-        t('Score: %number', ['%number' => $item->total_score]),
+        'game_number' => t('Game: %number', ['%number' => '#' . $number]),
+        'strikes' => t('Strikes: %number', ['%number' => $item->strikes]),
+        'spares' => t('Spares: %number', ['%number' => $item->spares]),
+        'misses' => t('Misses: %number', ['%number' => $item->misses]),
+        'faults' => t('Faults: %number', ['%number' => $item->faults]),
+        'splits' => t('Splits: %number', ['%number' => $item->splits]),
+        'splits_closed' => t('Splits closed: %number', ['%number' => $item->splits_closed]),
+        'open_frames' => t('Open frames: %number', ['%number' => $item->splits]),
+        'closed_frames' => t('Closed frames: %number', ['%number' => $item->splits_closed]),
+        'total_score' => t('Score: %number', ['%number' => $item->total_score]),
       ];
+      $display_statistics = array_intersect_key($items, array_flip(array_filter($this->getSetting('display_statistics'))));
 
       $elements[$delta]['details'] = [
         '#theme' => 'item_list',
-        '#items' => $items,
+        '#items' => $display_statistics,
         '#attributes' => [
           'class' => 'bowling-details',
         ],
@@ -85,8 +109,6 @@ class BowlingFieldScorecardFormatter extends FormatterBase {
           'class' => 'bowling-scorecard',
         ],
       ];
-
-      // Split into seperate library for formatters.
       $elements['#attached']['library'][] = 'bowling_field/formatter';
     }
 

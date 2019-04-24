@@ -1,0 +1,10 @@
+field.formatter.settings.bowling_field_scorecard:
+  type: mapping
+  label: 'Scorecard formatter display statistics'
+  mapping: 
+    display_statistics:
+      type: sequence
+      label: 'Display statistics'
+      sequence:
+        type: string
+        label: 'Total score'

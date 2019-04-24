@@ -2,3 +2,7 @@
     float:left;
     margin-right: 4px;
 }
+
+.field--type-bowling-field .form-item select {
+    width: 40px;
+}
