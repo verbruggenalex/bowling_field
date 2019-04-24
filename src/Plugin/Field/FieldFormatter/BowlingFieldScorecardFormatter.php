@@ -28,7 +28,18 @@ class BowlingFieldScorecardFormatter extends FormatterBase {
    */
   public static function defaultSettings() {
     return [
-      'display_statistics' => 'total_score',
+      'display_statistics' => [
+        'game_number' => 'game_number',
+        'strikes' => 0,
+        'spares' => 0,
+        'misses' => 0,
+        'faults' => 0,
+        'splits' => 0,
+        'splits_closed' => 0,
+        'open_frames' => 0,
+        'closed_frames' => 0,
+        'total_score' => 'total_score',
+      ],
     ] + parent::defaultSettings();
   }
 
@@ -65,6 +76,7 @@ class BowlingFieldScorecardFormatter extends FormatterBase {
     $summary = [];
     $display_statistics = array_filter(array_values($this->getSetting('display_statistics')));
     $summary[] = $this->t('Displays statistics: %statistics', ['%statistics' => implode(',', $display_statistics)]);
+
     return $summary;
   }
 

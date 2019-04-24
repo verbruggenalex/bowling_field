@@ -5,6 +5,3 @@ field.formatter.settings.bowling_field_scorecard:
     display_statistics:
       type: sequence
       label: 'Display statistics'
-      sequence:
-        type: string
-        label: 'Total score'
