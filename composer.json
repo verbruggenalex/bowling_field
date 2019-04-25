@@ -3,7 +3,7 @@
     "description": "Provides a new field type, widget and formatter for bowling scores.",
     "type": "drupal-module",
     "license": "GPL-2.0+",
-    "homepage": "https://drupal.org/project/bowling_field",
+    "homepage": "https://github.com/verbruggenalex/bowling_field",
     "authors": [
         {
             "name": "Alex Verbruggen",
