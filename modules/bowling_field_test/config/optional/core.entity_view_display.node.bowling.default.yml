@@ -6,9 +6,10 @@ dependencies:
     - field.field.node.bowling.field_bowling
     - node.type.bowling
   module:
+    - bowling_field
     - user
 _core:
-  default_config_hash: YZNH9u73BlCkXHCNajAIiPO9vtR9W_GLplEoO8rPock
+  default_config_hash: a7InE_UbLQNCty_bHgS-DgPK7oOMDaues4TzWEbQ_3U
 id: node.bowling.default
 targetEntityType: node
 bundle: bowling
@@ -17,13 +18,24 @@ content:
   field_bowling:
     weight: 101
     label: above
-    settings: {  }
+    settings:
+      display_statistics:
+        game_number: game_number
+        strikes: 0
+        spares: 0
+        misses: 0
+        faults: 0
+        splits: 0
+        splits_closed: 0
+        open_frames: 0
+        closed_frames: 0
+        total_score: total_score
     third_party_settings: {  }
-    type: null
+    type: bowling_field_scorecard
     region: content
   links:
     weight: 100
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden: {  }

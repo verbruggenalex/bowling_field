@@ -8,7 +8,7 @@ dependencies:
   module:
     - bowling_field
 _core:
-  default_config_hash: Dslx_8dVP3WmPl4ntdb5D_jDCkySVa33tHNYdJs2UxQ
+  default_config_hash: A1v8XkRh_668C34VOthTahJyFsVpNHmHpPDGQNcmIqc
 id: node.bowling.field_bowling
 field_name: field_bowling
 entity_type: node

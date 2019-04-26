@@ -9,7 +9,7 @@ dependencies:
     - bowling_field
     - path
 _core:
-  default_config_hash: cykQpgNDdnbzUhCuQPG12ha-7-Kc9lMoDPieR052kX8
+  default_config_hash: O_zvnMKJP6hG2BqSrvkWesU0du8xzDZ5DBj7Q-dDUEc
 id: node.bowling.default
 targetEntityType: node
 bundle: bowling

@@ -9,7 +9,7 @@ dependencies:
   module:
     - user
 _core:
-  default_config_hash: adurehfCNxH2mGNKAWFGVwL682DsztavxrecgDis0ys
+  default_config_hash: EpLVdo59KOzJO5tuTL0j-UPITQSrurh2NEpbYydclE4
 id: node.bowling.teaser
 targetEntityType: node
 bundle: bowling
